@@ -2,10 +2,10 @@
 
 // Some info about your mod.
 $mod_title      = 'Gravatar';
-$mod_version    = '0.1';
-$release_date   = '2009-10-17'; // YYYY-MM-DD
+$mod_version    = '0.1.1';
+$release_date   = '2010-04-18'; // YYYY-MM-DD
 $author         = 'Frank Smit (FSX)';
-$author_email   = '61924.00@gmail.com';
+$author_email   = 'frank/fluxbb/org';
 
 // Versions of FluxBB this mod was created for. Minor variations (i.e. 1.2.4 vs 1.2.5) will be allowed, but a warning will be displayed.
 $fluxbb_versions = array('1.4');
@@ -122,13 +122,13 @@ else:
 				<p><strong>Author:</strong> <?php echo pun_htmlspecialchars($author) ?> (<a href="mailto:<?php echo pun_htmlspecialchars($author_email) ?>"><?php echo pun_htmlspecialchars($author_email) ?></a>)</p>
 				<p><strong>Disclaimer:</strong> Mods are not officially supported by FluxBB. Mods generally can't be uninstalled without running SQL queries manually against the database. Make backups of all data you deem necessary before installing.</p>
 <?php if ($mod_restore): ?>				<p>If you've previously installed this mod and would like to uninstall it, you can click the restore button below to restore the database.</p>
-<?php endif; ?><?php if ($version_warning): ?>				<p style="color: #a00"><strong>Warning:</strong> The mod you are about to install was not made specifically to support your current version of FluxBB (<?php echo $pun_config['o_cur_version']; ?>). However, in most cases this is not a problem and the mod will most likely work with your version as well. If you are uncertain about installning the mod due to this potential version conflict, contact the mod author.</p>
-<?php endif; ?>			</div>
+<?php endif ?><?php if ($version_warning): ?>				<p style="color: #a00"><strong>Warning:</strong> The mod you are about to install was not made specifically to support your current version of FluxBB (<?php echo $pun_config['o_cur_version']; ?>). However, in most cases this is not a problem and the mod will most likely work with your version as well. If you are uncertain about installning the mod due to this potential version conflict, contact the mod author.</p>
+<?php endif ?>			</div>
 			<p><input type="submit" name="install" value="Install" /><?php if ($mod_restore): ?><input type="submit" name="restore" value="Restore" /><?php endif; ?></p>
 		</form>
 	</div>
 </div>
-<?php endif; ?>
+<?php endif ?>
 
 </div>
 </div>
