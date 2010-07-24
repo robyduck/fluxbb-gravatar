@@ -8,7 +8,7 @@ $author         = 'Frank Smit (FSX)';
 $author_email   = 'frank/fluxbb/org';
 
 // Versions of FluxBB this mod was created for. Minor variations (i.e. 1.2.4 vs 1.2.5) will be allowed, but a warning will be displayed.
-$fluxbb_versions = array('1.4');
+$fluxbb_versions = array('1.4.1');
 
 // Set this to false if you haven't implemented the restore function (see below)
 $mod_restore = true;
