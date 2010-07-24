@@ -2,8 +2,8 @@
 
 // Some info about your mod.
 $mod_title      = 'Gravatar';
-$mod_version    = '0.1.1';
-$release_date   = '2010-04-18'; // YYYY-MM-DD
+$mod_version    = '0.1.2';
+$release_date   = '2010-07-24'; // YYYY-MM-DD
 $author         = 'Frank Smit (FSX)';
 $author_email   = 'frank/fluxbb/org';
 
@@ -29,7 +29,10 @@ function restore()
 	$db->drop_field('users', 'use_gravatar');
 }
 
+/***********************************************************************/
+
 // DO NOT EDIT ANYTHING BELOW THIS LINE!
+
 
 // Circumvent maintenance mode
 define('PUN_TURN_OFF_MAINT', 1);
@@ -41,31 +44,17 @@ if (!defined('PUN_DEBUG'))
 	define('PUN_DEBUG', 1);
 
 // Make sure we are running a FluxBB version that this mod works with
-$version_warning = false;
-if(!in_array($pun_config['o_cur_version'], $fluxbb_versions))
-{
-	foreach ($fluxbb_versions as $temp)
-	{
-		if (substr($temp, 0, 3) == substr($pun_config['o_cur_version'], 0, 3))
-		{
-			$version_warning = true;
-			break;
-		}
-	}
+$version_warning = !in_array($pun_config['o_cur_version'], $fluxbb_versions);
 
-	if (!$version_warning)
-		exit('You are running a version of FluxBB ('.$pun_config['o_cur_version'].') that this mod does not support. This mod supports FluxBB versions: '.implode(', ', $fluxbb_versions));
-}
+$style = (isset($pun_user)) ? $pun_user['style'] : $pun_config['o_default_style'];
 
-$style = (isset($cur_user)) ? $cur_user['style'] : $pun_config['o_default_style'];
-
-?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-
-<html dir="ltr">
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-	<title><?php echo $mod_title ?> installation</title>
-	<link rel="stylesheet" type="text/css" href="style/<?php echo $pun_config['o_default_style'].'.css' ?>" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><?php echo pun_htmlspecialchars($mod_title) ?> installation</title>
+<link rel="stylesheet" type="text/css" href="style/<?php echo $style.'.css' ?>" />
 </head>
 <body>
 
@@ -74,9 +63,10 @@ $style = (isset($cur_user)) ? $cur_user['style'] : $pun_config['o_default_style'
 
 <?php
 
-if (isset($_POST['form_sent'])):
-	if (isset($_POST['install'])):
-
+if (isset($_POST['form_sent']))
+{
+	if (isset($_POST['install']))
+	{
 		// Run the install function (defined above)
 		install();
 
@@ -91,8 +81,9 @@ if (isset($_POST['form_sent'])):
 </div>
 <?php
 
-	else:
-
+	}
+	else
+	{
 		// Run the restore function (defined above)
 		restore();
 
@@ -107,8 +98,10 @@ if (isset($_POST['form_sent'])):
 </div>
 <?php
 
-	endif;
-else:
+	}
+}
+else
+{
 
 ?>
 <div class="blockform">
@@ -118,17 +111,25 @@ else:
 			<div><input type="hidden" name="form_sent" value="1" /></div>
 			<div class="inform">
 				<p>This script will update your database to work with the following modification:</p>
-				<p><strong>Mod title:</strong> <?php echo pun_htmlspecialchars($mod_title).' '.$mod_version ?></p>
+				<p><strong>Mod title:</strong> <?php echo pun_htmlspecialchars($mod_title.' '.$mod_version) ?></p>
 				<p><strong>Author:</strong> <?php echo pun_htmlspecialchars($author) ?> (<a href="mailto:<?php echo pun_htmlspecialchars($author_email) ?>"><?php echo pun_htmlspecialchars($author_email) ?></a>)</p>
 				<p><strong>Disclaimer:</strong> Mods are not officially supported by FluxBB. Mods generally can't be uninstalled without running SQL queries manually against the database. Make backups of all data you deem necessary before installing.</p>
-<?php if ($mod_restore): ?>				<p>If you've previously installed this mod and would like to uninstall it, you can click the restore button below to restore the database.</p>
-<?php endif ?><?php if ($version_warning): ?>				<p style="color: #a00"><strong>Warning:</strong> The mod you are about to install was not made specifically to support your current version of FluxBB (<?php echo $pun_config['o_cur_version']; ?>). However, in most cases this is not a problem and the mod will most likely work with your version as well. If you are uncertain about installning the mod due to this potential version conflict, contact the mod author.</p>
-<?php endif ?>			</div>
-			<p><input type="submit" name="install" value="Install" /><?php if ($mod_restore): ?><input type="submit" name="restore" value="Restore" /><?php endif; ?></p>
+<?php if ($mod_restore): ?>
+				<p>If you've previously installed this mod and would like to uninstall it, you can click the Restore button below to restore the database.</p>
+<?php endif; ?>
+<?php if ($version_warning): ?>
+				<p style="color: #a00"><strong>Warning:</strong> The mod you are about to install was not made specifically to support your current version of FluxBB (<?php echo $pun_config['o_cur_version']; ?>). This mod supports FluxBB versions: <?php echo pun_htmlspecialchars(implode(', ', $fluxbb_versions)); ?>. If you are uncertain about installing the mod due to this potential version conflict, contact the mod author.</p>
+<?php endif; ?>
+			</div>
+			<p class="buttons"><input type="submit" name="install" value="Install" /><?php if ($mod_restore): ?><input type="submit" name="restore" value="Restore" /><?php endif; ?></p>
 		</form>
 	</div>
 </div>
-<?php endif ?>
+<?php
+
+}
+
+?>
 
 </div>
 </div>

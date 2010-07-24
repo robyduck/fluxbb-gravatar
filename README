@@ -1,9 +1,9 @@
 ##
 ##        Mod title:  Gravatar for FluxBB
 ##
-##      Mod version:  0.1.1
+##      Mod version:  0.1.2
 ##   Works on PunBB:  1.4
-##     Release date:  2010-04-18 (YYYY-MM-DD)
+##     Release date:  2010-07-24
 ##           Author:  Frank Smit (FSX) (frank/fluxbb/org)
 ##
 ##      Description:  This mod will adds support for Gravatars to the forum.
@@ -15,36 +15,36 @@
 ##   Affected files:  viewtopic.php, profile.php, include/functions.php,
 ##                    lang/<language>/profile.php
 ##
-##       Affects DB:  Yes, adds a new field, "use_gravatar", to <prefix>.users
+##       Affects DB:  Yes, adds a new column, "use_gravatar", to <prefix>.users
 ##
-##            Notes:  The main e-mail address of the user is used to fetch the Gravatar.
+##            Notes:  The e-mail address of the user is used to fetch the Gravatar.
 ##
 ##       DISCLAIMER:  Please note that "mods" are not officially supported by
-##                    PunBB. Installation of this modification is done at your
-##                    own risk. Backup your forum database and any and all
-##                    applicable files before proceeding.
+##                    FluxBB. Installation of this modification is done at
+##                    your own risk. Backup your forum database and any and
+##                    all applicable files before proceeding.
 ##
 
 #
-#---------[ 2. UPLOAD ]-------------------------------------------------------
+#---------[ 1. UPLOAD ]--------------------------------------------------------
 #
 
 install_mod_gravatar.php to /
 
 #
-#---------[ 3. RUN ]----------------------------------------------------------
+#---------[ 2. RUN ]-----------------------------------------------------------
 #
 
 install_mod_gravatar.php
 
 #
-#---------[ 4. DELETE ]-------------------------------------------------------
+#---------[ 3. DELETE ]--------------------------------------------------------
 #
 
 install_mod_gravatar.php
 
 #
-#---------[ 5. OPEN ]---------------------------------------------------------
+#---------[ 4. OPEN ]----------------------------------------------------------
 #
 
 Note: <language> is the language you use on your forum.
@@ -52,7 +52,7 @@ Note: <language> is the language you use on your forum.
 lang/<language>/profile.php
 
 #
-#---------[ 6. FIND (line ~60) ]---------------------------------------------
+#---------[ 5. FIND (line ~60) ]-----------------------------------------------
 #
 
 'Upload avatar'				=>	'Upload avatar',
@@ -62,24 +62,23 @@ lang/<language>/profile.php
 'Upload'					=>	'Upload',	// submit button
 
 #
-#---------[ 7. AFTER, ADD ]-------------------------------------------------
+#---------[ 6. AFTER, ADD ]----------------------------------------------------
 #
 
 'Gravatar info'             =>  ' You can also use Gravatar to provide a forum avatar and can be enabled by clicking <strong>Use Gravatar</strong>. You need to be registered at <a href="http://en.gravatar.com/">Gravatar</a> for this feature.',
 'Use gravatar'              =>  'Use Gravatar',
 'Use gravatar warning'      =>  '(Warning: existing avatar will be deleted)',
-'Disable gravatar'          =>  'Disable Gravatar',
-'Gravatar enable redirect'  =>  'Gravatar enabled. Redirecting &hellip;',
-'Gravatar disable redirect' =>  'Gravatar disabled. Redirecting &hellip;',
+'Gravatar enable redirect'  =>  'Gravatar enabled. Redirecting …',
+'Gravatar disable redirect' =>  'Gravatar disabled. Redirecting …',
 
 #
-#---------[ 5. OPEN ]---------------------------------------------------------
+#---------[ 6. OPEN ]----------------------------------------------------------
 #
 
 include/functions.php
 
 #
-#---------[ 6. FIND (line ~495 ]---------------------------------------------
+#---------[ 7. FIND (line ~497 ]-----------------------------------------------
 #
 
 //
@@ -90,7 +89,7 @@ function generate_avatar_markup($user_id)
 	global $pun_config;
 
 #
-#---------[ 6. REPLACE WITH ]---------------------------------------------
+#---------[ 8. REPLACE WITH ]--------------------------------------------------
 #
 
 //
@@ -106,19 +105,19 @@ function generate_avatar_markup($user_id, $user_email, $use_gravatar = 0)
                $pun_config['o_avatars_width'].'" alt="" />';
 
 #
-#---------[ 5. OPEN ]---------------------------------------------------------
+#---------[ 9. OPEN ]----------------------------------------------------------
 #
 
 profile.php
 
 #
-#---------[ 6. FIND (line ~304 ]---------------------------------------------
+#---------[ 10. FIND (line ~297 ]----------------------------------------------
 #
 
 else if ($action == 'upload_avatar' || $action == 'upload_avatar2')
 
 #
-#---------[ 7. BEFORE, ADD ]-------------------------------------------------
+#---------[ 11. BEFORE, ADD ]--------------------------------------------------
 #
 
 else if ($action == 'use_gravatar')
@@ -150,7 +149,7 @@ else if ($action == 'disable_gravatar')
 }
 
 #
-#---------[ 6. FIND (line ~415 ]---------------------------------------------
+#---------[ 12. FIND (line ~408 ]----------------------------------------------
 #
 
 			// Delete any old avatars and put the new one in place
@@ -159,7 +158,7 @@ else if ($action == 'disable_gravatar')
 			@chmod($pun_config['o_avatars_dir'].'/'.$id.$extension, 0644);
 
 #
-#---------[ 7. AFTER, ADD ]-------------------------------------------------
+#---------[ 13. AFTER, ADD ]---------------------------------------------------
 #
 
 			// Disable gravatar
@@ -167,89 +166,86 @@ else if ($action == 'disable_gravatar')
 				or error('Unable to disable gravatar', __FILE__, __LINE__, $db->error());
 
 #
-#---------[ 6. FIND (line ~1381 ]---------------------------------------------
+#---------[ 14. FIND (line ~1419 ]---------------------------------------------
 #
 
-		$avatar_field = '<a href="profile.php?action=upload_avatar&amp;id='.$id.'">'.$lang_profile['Change avatar'].'</a>';
-
-#
-#---------[ 7. AFTER, ADD ]-------------------------------------------------
-#
-
-		// Gravatar link
-		if ($pun_user['use_gravatar'] == 1)
-			$gravatar_field = '&nbsp;&nbsp;&nbsp;<a href="profile.php?action=disable_gravatar&amp;id='.$id.'">'.$lang_profile['Disable gravatar'].'</a> ';
-		else
-			$gravatar_field = '&nbsp;&nbsp;&nbsp;<a href="profile.php?action=use_gravatar&amp;id='.$id.'">'.$lang_profile['Use gravatar'].'</a> '.$lang_profile['Use gravatar warning'];
-
-#
-#---------[ 6. FIND (line ~1389 ]---------------------------------------------
-#
+		$avatar_field = '<span><a href="profile.php?action=upload_avatar&amp;id='.$id.'">'.$lang_profile['Change avatar'].'</a></span>';
 
 		$user_avatar = generate_avatar_markup($id);
 		if ($user_avatar)
-			$avatar_field .= '&nbsp;&nbsp;&nbsp;<a href="profile.php?action=delete_avatar&amp;id='.$id.'">'.$lang_profile['Delete avatar'].'</a>';
+			$avatar_field .= ' <span><a href="profile.php?action=delete_avatar&amp;id='.$id.'">'.$lang_profile['Delete avatar'].'</a></span>';
 		else
-			$avatar_field = '<a href="profile.php?action=upload_avatar&amp;id='.$id.'">'.$lang_profile['Upload avatar'].'</a>';
+			$avatar_field = '<span><a href="profile.php?action=upload_avatar&amp;id='.$id.'">'.$lang_profile['Upload avatar'].'</a></span>';
 
 #
-#---------[ 6. REPLACE WITH ]---------------------------------------------
+#---------[ 15. REPLACE WITH ]-------------------------------------------------
 #
+
+		$avatar_field = '<span><a href="profile.php?action=upload_avatar&amp;id='.$id.'">'.$lang_profile['Change avatar'].'</a></span>';
+		$gravatar_field = '';
+
+		if ($pun_user['use_gravatar'] != 1)
+			$gravatar_field = ' <span><a href="profile.php?action=use_gravatar&amp;id='.$id.'">'.$lang_profile['Use gravatar'].'</a> '.$lang_profile['Use gravatar warning'].'<span>';
 
 		$user_avatar = generate_avatar_markup($id, $pun_user['email'], $pun_user['use_gravatar']);
-		if ($user_avatar && $pun_user['use_gravatar'] == 0)
-			$avatar_field .= '&nbsp;&nbsp;&nbsp;<a href="profile.php?action=delete_avatar&amp;id='.$id.'">'.$lang_profile['Delete avatar'].'</a>'.$gravatar_field;
+		if ($user_avatar)
+		{
+			if ($pun_user['use_gravatar'] == 1)
+				$avatar_field .= ' <span><a href="profile.php?action=disable_gravatar&amp;id='.$id.'">'.$lang_profile['Delete avatar'].'</a></span>';
+			else
+				$avatar_field .= ' <span><a href="profile.php?action=delete_avatar&amp;id='.$id.'">'.$lang_profile['Delete avatar'].'</a></span>';
+		}
 		else
-			$avatar_field = '<a href="profile.php?action=upload_avatar&amp;id='.$id.'">'.$lang_profile['Upload avatar'].'</a>'.$gravatar_field;
+			$avatar_field = '<span><a href="profile.php?action=upload_avatar&amp;id='.$id.'">'.$lang_profile['Upload avatar'].'</a></span>'.$gravatar_field;
 
 #
-#---------[ 6. FIND (line ~1418 ]---------------------------------------------
+#---------[ 16. FIND (line ~1459 ]---------------------------------------------
 #
 
-							<p><?php echo $lang_profile['Avatar info'] ?></p>
+<?php endif; ?>							<p><?php echo $lang_profile['Avatar info'] ?></p>
 
 #
-#---------[ 6. REPLACE WITH ]---------------------------------------------
+#---------[ 17. REPLACE WITH ]-------------------------------------------------
 #
 
-							<p><?php echo $lang_profile['Avatar info'].$lang_profile['Gravatar info'] ?></p>
+<?php endif; ?>							<p><?php echo $lang_profile['Avatar info'].$lang_profile['Gravatar info'] ?></p>
 
 #
-#---------[ 5. OPEN ]---------------------------------------------------------
+#---------[ 18. OPEN ]---------------------------------------------------------
 #
 
 viewtopic.php
 
 #
-#---------[ 6. FIND (line ~199 ]---------------------------------------------
+#---------[ 19. FIND (line ~207 ]----------------------------------------------
 #
 
 // Retrieve the posts (and their respective poster/online status)
-$result = $db->query('SELECT u.email, u.title, u.url, u.location, u.signature, u.email_setting, u.num_posts, u.registered, u.admin_note, p.id, p.poster AS username, p.poster_id, p.poster_ip, p.poster_email, p.message, p.hide_smilies, p.posted, p.edited, p.edited_by, g.g_id, g.g_user_title, o.user_id AS is_online FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'users AS u ON u.id=p.poster_id INNER JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id LEFT JOIN '.$db->prefix.'online AS o ON (o.user_id=u.id AND o.user_id!=1 AND o.idle=0) WHERE p.topic_id='.$id.' ORDER BY p.id LIMIT '.$start_from.','.$pun_user['disp_posts'], true) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+$result = $db->query('SELECT u.email, u.title, u.url, u.location, u.signature, u.email_setting, u.num_posts, u.registered, u.admin_note, p.id, p.poster AS username, p.poster_id, p.poster_ip, p.poster_email, p.message, p.hide_smilies, p.posted, p.edited, p.edited_by, g.g_id, g.g_user_title, o.user_id AS is_online FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'users AS u ON u.id=p.poster_id INNER JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id LEFT JOIN '.$db->prefix.'online AS o ON (o.user_id=u.id AND o.user_id!=1 AND o.idle=0) WHERE p.id IN ('.implode(',', $post_ids).') ORDER BY p.id', true) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 
 #
-#---------[ 6. REPLACE WITH ]---------------------------------------------
+#---------[ 20. REPLACE WITH ]-------------------------------------------------
 #
 
 Note: only u.use_gravatar has been added right after the SELECT.
 
 // Retrieve the posts (and their respective poster/online status)
-$result = $db->query('SELECT u.use_gravatar, u.email, u.title, u.url, u.location, u.signature, u.email_setting, u.num_posts, u.registered, u.admin_note, p.id, p.poster AS username, p.poster_id, p.poster_ip, p.poster_email, p.message, p.hide_smilies, p.posted, p.edited, p.edited_by, g.g_id, g.g_user_title, o.user_id AS is_online FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'users AS u ON u.id=p.poster_id INNER JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id LEFT JOIN '.$db->prefix.'online AS o ON (o.user_id=u.id AND o.user_id!=1 AND o.idle=0) WHERE p.topic_id='.$id.' ORDER BY p.id LIMIT '.$start_from.','.$pun_user['disp_posts'], true) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+$result = $db->query('SELECT u.use_gravatar, u.email, u.title, u.url, u.location, u.signature, u.email_setting, u.num_posts, u.registered, u.admin_note, p.id, p.poster AS username, p.poster_id, p.poster_ip, p.poster_email, p.message, p.hide_smilies, p.posted, p.edited, p.edited_by, g.g_id, g.g_user_title, o.user_id AS is_online FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'users AS u ON u.id=p.poster_id INNER JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id LEFT JOIN '.$db->prefix.'online AS o ON (o.user_id=u.id AND o.user_id!=1 AND o.idle=0) WHERE p.id IN ('.implode(',', $post_ids).') ORDER BY p.id', true) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 
 #
-#---------[ 6. FIND (line ~231 ]---------------------------------------------
+#---------[ 21. FIND (line ~240 ]----------------------------------------------
 #
 
 				$user_avatar = $user_avatar_cache[$cur_post['poster_id']] = generate_avatar_markup($cur_post['poster_id']);
 
 #
-#---------[ 6. REPLACE WITH ]---------------------------------------------
+#---------[ 22. REPLACE WITH ]-------------------------------------------------
 #
 
 				$user_avatar = $user_avatar_cache[$cur_post['poster_id']] = generate_avatar_markup($cur_post['poster_id'], $cur_post['email'], $cur_post['use_gravatar']);
 
 #
-#---------[ 9. SAVE/UPLOAD & USE ]-------------------------------------------------
+#---------[ 23. SAVE/UPLOAD & USE ]--------------------------------------------
 #
 
 See the notes at the beginning of this file.
