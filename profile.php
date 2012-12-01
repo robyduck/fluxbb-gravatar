@@ -1539,7 +1539,7 @@ else
 		if ($user_avatar)
 		{
 			if ($pun_user['use_gravatar'] == 1)
-				$avatar_field .= ' <span><a href="profile.php?action=disable_gravatar&amp;id='.$id.'">'.$lang_profile['Delete avatar'].'</a></span>';
+				$avatar_field .= ' <span><a href="profile.php?action=disable_gravatar&amp;id='.$id.'">'.$lang_profile['Delete gravatar'].'</a></span>';
 			else
 				$avatar_field .= ' <span><a href="profile.php?action=delete_avatar&amp;id='.$id.'">'.$lang_profile['Delete avatar'].'</a></span>';
 		}

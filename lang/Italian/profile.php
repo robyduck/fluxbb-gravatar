@@ -62,13 +62,14 @@ $lang_profile = array(
 'Upload avatar'					=>	'Carica immagine',
 'Upload avatar legend'			=>	'Inserire una immagine da caricare',
 'Delete avatar'					=>	'Cancella avatar', // solo per amministratori
+'Delete gravatar'					=>	'Cancella gravatar', // solo per amministratori
 'File'							=>	'File',
 'Upload'						=>	'Carica', // pulsante di invio
-'Gravatar info'             =>  ' You can also use Gravatar to provide a forum avatar and can be enabled by clicking <strong>Use Gravatar</strong>. You need to be registered at <a href="http://en.gravatar.com/">Gravatar</a> for this feature.',
-'Use gravatar'              =>  'Use Gravatar',
-'Use gravatar warning'      =>  '(Warning: existing avatar will be deleted)',
-'Gravatar enable redirect'  =>  'Gravatar enabled. Redirecting …',
-'Gravatar disable redirect' =>  'Gravatar disabled. Redirecting …',
+'Gravatar info'             =>  ' Puoi anche decidere di utilizzare il tuo Gravatar come Avatar sul forum, lo puoi abilitare cliccando su <strong>Usa Gravatar</strong>. Devi essere registrato su <a href="http://en.gravatar.com/">Gravatar</a> per questa funzione.',
+'Use gravatar'              =>  'Usa Gravatar',
+'Use gravatar warning'      =>  '(Attenzione: il tuo avatar attuale verrà cancellato)',
+'Gravatar enable redirect'  =>  'Gravatar abilitato. Reindirizzamento …',
+'Gravatar disable redirect' =>  'Gravatar disabilitato. Reindirizzamento …',
 
 // Validazione moduli
 'Forbidden title'				=>	'Il titolo inserito contiente parole poco carine. Scegli un titolo differente, grazie.',
