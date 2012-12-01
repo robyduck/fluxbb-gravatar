@@ -1,10 +1,11 @@
 ##
 ##        Mod title:  Gravatar for FluxBB
 ##
-##      Mod version:  0.1.2
-##  Works on FluxBB:  1.4
-##     Release date:  2010-07-24
+##      Mod version:  0.1.3
+##  Works on FluxBB:  1.5.0
+##     Release date:  2012-12-01
 ##           Author:  Frank Smit (FSX) (frank/fluxbb/org)
+##		      Robert Mayr (robyduck)
 ##
 ##      Description:  This mod will adds support for Gravatars to the forum.
 ##                    A user can enable his Gravatar by going to the "Personality"
@@ -185,13 +186,13 @@ else if ($action == 'disable_gravatar')
 		$gravatar_field = '';
 
 		if ($pun_user['use_gravatar'] != 1)
-			$gravatar_field = ' <span><a href="profile.php?action=use_gravatar&amp;id='.$id.'">'.$lang_profile['Use gravatar'].'</a> '.$lang_profile['Use gravatar warning'].'<span>';
+			$avatar_field = ' <span><a href="profile.php?action=use_gravatar&amp;id='.$id.'">'.$lang_profile['Use gravatar'].'</a> '.$lang_profile['Use gravatar warning'].'<span>';
 
 		$user_avatar = generate_avatar_markup($id, $pun_user['email'], $pun_user['use_gravatar']);
 		if ($user_avatar)
 		{
 			if ($pun_user['use_gravatar'] == 1)
-				$avatar_field .= ' <span><a href="profile.php?action=disable_gravatar&amp;id='.$id.'">'.$lang_profile['Delete avatar'].'</a></span>';
+				$avatar_field .= ' <span><a href="profile.php?action=disable_gravatar&amp;id='.$id.'">'.$lang_profile['Delete gravatar'].'</a></span>';
 			else
 				$avatar_field .= ' <span><a href="profile.php?action=delete_avatar&amp;id='.$id.'">'.$lang_profile['Delete avatar'].'</a></span>';
 		}
