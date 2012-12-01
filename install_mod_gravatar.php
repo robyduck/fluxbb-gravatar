@@ -2,13 +2,13 @@
 
 // Some info about your mod.
 $mod_title      = 'Gravatar';
-$mod_version    = '0.1.2';
-$release_date   = '2010-07-24'; // YYYY-MM-DD
-$author         = 'Frank Smit (FSX)';
-$author_email   = 'frank/fluxbb/org';
+$mod_version    = '0.1.3';
+$release_date   = '2012-12-01'; // YYYY-MM-DD
+$author         = 'Robert Mayr';
+$author_email   = 'robyduck/gmail/com';
 
 // Versions of FluxBB this mod was created for. Minor variations (i.e. 1.2.4 vs 1.2.5) will be allowed, but a warning will be displayed.
-$fluxbb_versions = array('1.4.1');
+$fluxbb_versions = array('1.5.0');
 
 // Set this to false if you haven't implemented the restore function (see below)
 $mod_restore = true;
