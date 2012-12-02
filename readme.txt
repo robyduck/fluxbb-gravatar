@@ -59,13 +59,14 @@ lang/<language>/profile.php
 'Upload avatar'				=>	'Upload avatar',
 'Upload avatar legend'		=>	'Enter an avatar file to upload',
 'Delete avatar'				=>	'Delete avatar',	// only for admins
-'File'						=>	'File',
-'Upload'					=>	'Upload',	// submit button
 
 #
 #---------[ 6. AFTER, ADD ]----------------------------------------------------
 #
 
+'Delete gravatar'				=>	'Delete gravatar',	// only for admins
+'File'						=>	'File',
+'Upload'					=>	'Upload',	// submit button
 'Gravatar info'             =>  ' You can also use Gravatar to provide a forum avatar and can be enabled by clicking <strong>Use Gravatar</strong>. You need to be registered at <a href="http://en.gravatar.com/">Gravatar</a> for this feature.',
 'Use gravatar'              =>  'Use Gravatar',
 'Use gravatar warning'      =>  '(Warning: existing avatar will be deleted)',
