@@ -188,7 +188,7 @@ else if ($action == 'disable_gravatar')
 		$gravatar_field = '';
 
 		if ($pun_user['use_gravatar'] != 1)
-			$gravatar_field = ' <span><a href="profile.php?action=use_gravatar&amp;id='.$id.'">'.$lang_profile['Use gravatar'].'</a> '.$lang_profile['Use gravatar warning'].'<span>';
+			$gravatar_field = ' <span><a href="profile.php?action=use_gravatar&amp;id='.$id.'">'.$lang_profile['Use gravatar'].'</a> '.$lang_profile['Use gravatar warning'].'</span>';
 
 		$user_avatar = generate_avatar_markup($id, $pun_user['email'], $pun_user['use_gravatar']);
 		if ($user_avatar)
