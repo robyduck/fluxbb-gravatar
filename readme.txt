@@ -106,14 +106,14 @@ function generate_avatar_markup($user_id, $user_email, $use_gravatar = 0)
                $pun_config['o_avatars_width'].'" width="'.$pun_config['o_avatars_width'].'" height="'.
                $pun_config['o_avatars_width'].'" alt="" />';
 
-#
+# FATTO-----
 #---------[ 9. OPEN ]----------------------------------------------------------
 #
 
 profile.php
 
 #
-#---------[ 10. FIND (line ~297) ]---------------------------------------------
+#---------[ 10. FIND (line ~313) ]---------------------------------------------
 #
 
 else if ($action == 'upload_avatar' || $action == 'upload_avatar2')
@@ -137,6 +137,7 @@ else if ($action == 'use_gravatar')
 	redirect('profile.php?section=personality&amp;id='.$id, $lang_profile['Gravatar enable redirect']);
 }
 
+
 else if ($action == 'disable_gravatar')
 {
 	if ($pun_user['id'] != $id && !$pun_user['is_admmod'])
@@ -151,7 +152,7 @@ else if ($action == 'disable_gravatar')
 }
 
 #
-#---------[ 12. FIND (line ~408) ]---------------------------------------------
+#---------[ 12. FIND (line ~424) ]---------------------------------------------
 #
 
 			// Delete any old avatars and put the new one in place
@@ -168,7 +169,7 @@ else if ($action == 'disable_gravatar')
 				or error('Unable to disable gravatar', __FILE__, __LINE__, $db->error());
 
 #
-#---------[ 14. FIND (line ~1419) ]--------------------------------------------
+#---------[ 14. FIND (line ~1523) ]--------------------------------------------
 #
 
 		$avatar_field = '<span><a href="profile.php?action=upload_avatar&amp;id='.$id.'">'.$lang_profile['Change avatar'].'</a></span>';
@@ -187,7 +188,7 @@ else if ($action == 'disable_gravatar')
 		$gravatar_field = '';
 
 		if ($pun_user['use_gravatar'] != 1)
-			$avatar_field = ' <span><a href="profile.php?action=use_gravatar&amp;id='.$id.'">'.$lang_profile['Use gravatar'].'</a> '.$lang_profile['Use gravatar warning'].'<span>';
+			$gravatar_field = ' <span><a href="profile.php?action=use_gravatar&amp;id='.$id.'">'.$lang_profile['Use gravatar'].'</a> '.$lang_profile['Use gravatar warning'].'<span>';
 
 		$user_avatar = generate_avatar_markup($id, $pun_user['email'], $pun_user['use_gravatar']);
 		if ($user_avatar)
@@ -201,7 +202,7 @@ else if ($action == 'disable_gravatar')
 			$avatar_field = '<span><a href="profile.php?action=upload_avatar&amp;id='.$id.'">'.$lang_profile['Upload avatar'].'</a></span>'.$gravatar_field;
 
 #
-#---------[ 16. FIND (line ~1459) ]--------------------------------------------
+#---------[ 16. FIND (line ~1561) ]--------------------------------------------
 #
 
 <?php endif; ?>							<p><?php echo $lang_profile['Avatar info'] ?></p>
@@ -219,7 +220,7 @@ else if ($action == 'disable_gravatar')
 viewtopic.php
 
 #
-#---------[ 19. FIND (line ~207) ]---------------------------------------------
+#---------[ 19. FIND (line ~211) ]---------------------------------------------
 #
 
 // Retrieve the posts (and their respective poster/online status)
@@ -235,7 +236,7 @@ Note: only u.use_gravatar has been added right after the SELECT.
 $result = $db->query('SELECT u.use_gravatar, u.email, u.title, u.url, u.location, u.signature, u.email_setting, u.num_posts, u.registered, u.admin_note, p.id, p.poster AS username, p.poster_id, p.poster_ip, p.poster_email, p.message, p.hide_smilies, p.posted, p.edited, p.edited_by, g.g_id, g.g_user_title, o.user_id AS is_online FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'users AS u ON u.id=p.poster_id INNER JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id LEFT JOIN '.$db->prefix.'online AS o ON (o.user_id=u.id AND o.user_id!=1 AND o.idle=0) WHERE p.id IN ('.implode(',', $post_ids).') ORDER BY p.id', true) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 
 #
-#---------[ 21. FIND (line ~240) ]---------------------------------------------
+#---------[ 21. FIND (line ~243) ]---------------------------------------------
 #
 
 				$user_avatar = $user_avatar_cache[$cur_post['poster_id']] = generate_avatar_markup($cur_post['poster_id']);
