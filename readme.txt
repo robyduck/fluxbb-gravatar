@@ -2,8 +2,8 @@
 ##        Mod title:  Gravatar for FluxBB
 ##
 ##      Mod version:  0.1.3
-##  Works on FluxBB:  1.5.0
-##     Release date:  2012-12-01
+##  Works on FluxBB:  1.5.x
+##     Release date:  2012-12-12
 ##           Author:  Frank Smit (FSX) (frank/fluxbb/org)
 ##		      Robert Mayr (robyduck)
 ##
