@@ -56,20 +56,20 @@ $lang_profile = array(
 'bytes'							=>	'byte',
 'Move failed'					=>	'Si &egrave; verificato un problema nel salvataggio dell\'immagine. Contatta l\'amministratore, grazie.',
 'Unknown failure'				=>	'Si &egrave; verificato un errore sconosciuto. Prova nuovamente o contatta l\'amministratore, grazie.',
-'Avatar upload redirect'		=>	'Immagine caricata. Reindirizzamento &hellip;',
-'Avatar deleted redirect'		=>	'Immagine cancellata. Reindirizzamento &hellip;',
+'Avatar upload redirect'		=>	'Immagine caricata. Reindirizzamento ...',
+'Avatar deleted redirect'		=>	'Immagine cancellata. Reindirizzamento ...',
 'Avatar desc'					=>	'Un avatar &egrave; un\'immagine personale che viene visualizzata sotto il proprio nome utente in ciascun messaggio come identificativo. Non pu&ograve; eccedere i',
 'Upload avatar'					=>	'Carica immagine',
 'Upload avatar legend'			=>	'Inserire una immagine da caricare',
 'Delete avatar'					=>	'Cancella avatar', // solo per amministratori
-'Delete gravatar'					=>	'Cancella gravatar', // solo per amministratori
 'File'							=>	'File',
 'Upload'						=>	'Carica', // pulsante di invio
+'Delete gravatar'				=>	'Cancella gravatar',	// only for admins
 'Gravatar info'             =>  ' Puoi anche decidere di utilizzare il tuo Gravatar come Avatar sul forum, lo puoi abilitare cliccando su <strong>Usa Gravatar</strong>. Devi essere registrato su <a href="http://en.gravatar.com/">Gravatar</a> per questa funzione.',
 'Use gravatar'              =>  'Usa Gravatar',
-'Use gravatar warning'      =>  '(Attenzione: il tuo avatar attuale verrà cancellato)',
-'Gravatar enable redirect'  =>  'Gravatar abilitato. Reindirizzamento …',
-'Gravatar disable redirect' =>  'Gravatar disabilitato. Reindirizzamento …',
+'Use gravatar warning'      =>  '(Attenzione: il tuo avatar attuale verr&agrave; cancellato)',
+'Gravatar enable redirect'  =>  'Gravatar abilitato. Reindirizzamento ...',
+'Gravatar disable redirect' =>  'Gravatar disabilitato. Reindirizzamento ...',
 
 // Validazione moduli
 'Forbidden title'				=>	'Il titolo inserito contiente parole poco carine. Scegli un titolo differente, grazie.',

@@ -324,6 +324,7 @@ else if ($action == 'use_gravatar')
 	redirect('profile.php?section=personality&amp;id='.$id, $lang_profile['Gravatar enable redirect']);
 }
 
+
 else if ($action == 'disable_gravatar')
 {
 	if ($pun_user['id'] != $id && !$pun_user['is_admmod'])
@@ -336,6 +337,7 @@ else if ($action == 'disable_gravatar')
 
 	redirect('profile.php?section=personality&amp;id='.$id, $lang_profile['Gravatar disable redirect']);
 }
+
 else if ($action == 'upload_avatar' || $action == 'upload_avatar2')
 {
 	if ($pun_config['o_avatars'] == '0')
@@ -423,6 +425,7 @@ else if ($action == 'upload_avatar' || $action == 'upload_avatar2')
 			delete_avatar($id);
 			@rename(PUN_ROOT.$pun_config['o_avatars_dir'].'/'.$id.'.tmp', PUN_ROOT.$pun_config['o_avatars_dir'].'/'.$id.$extension);
 			@chmod(PUN_ROOT.$pun_config['o_avatars_dir'].'/'.$id.$extension, 0644);
+			
 			// Disable gravatar
 			$db->query('UPDATE '.$db->prefix.'users SET use_gravatar=0 WHERE id='.$id)
 				or error('Unable to disable gravatar', __FILE__, __LINE__, $db->error());
@@ -1533,7 +1536,7 @@ else
 		$gravatar_field = '';
 
 		if ($pun_user['use_gravatar'] != 1)
-			$avatar_field = ' <span><a href="profile.php?action=use_gravatar&amp;id='.$id.'">'.$lang_profile['Use gravatar'].'</a> '.$lang_profile['Use gravatar warning'].'<span>';
+			$gravatar_field = ' <span><a href="profile.php?action=use_gravatar&amp;id='.$id.'">'.$lang_profile['Use gravatar'].'</a> '.$lang_profile['Use gravatar warning'].'</span>';
 
 		$user_avatar = generate_avatar_markup($id, $pun_user['email'], $pun_user['use_gravatar']);
 		if ($user_avatar)
